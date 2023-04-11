@@ -5,25 +5,25 @@ export class CreateUserDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    name: string;
+    name: string | undefined;
 
     @ApiProperty( { required: false })
     @IsNumber()
     @IsOptional()
-    age: number;
+    age: number | undefined;
 
     @ApiProperty( { required: true, example: 'user@mail.com'})
     @IsString()
     @IsEmail()
     @IsNotEmpty()
-    email: string;
+    email: string | undefined;
 
     @ApiProperty()
     @IsString()
-    city: string;
+    city: string | undefined;
 
     @ApiProperty()
     @IsBoolean()
     @IsOptional()
-    status: boolean;
+    status: boolean | undefined;
 }
