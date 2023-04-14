@@ -10,14 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 model Cat {
-  cat_id    Int     @default(autoincrement()) @id
+  id    Int     @default(autoincrement()) @id
   name  String?
   breed  String
   owner  String
 }
 
 model Owner {
-  id        Int      @default(autoincrement()) @id
-  name      String
-  cats_id    Int?     @relation(fields: [cat_id], references: [id])
+  id       Int     @default(autoincrement()) @id
+  name     String
+  cats     Cat? @relation(fields: [cats_id], references: [id])
+  cats_id    Int?
 }

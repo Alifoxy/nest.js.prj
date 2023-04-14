@@ -26,3 +26,5 @@ export class CatService {
         return this.cats;
     }
 }
+
+// DATABASE_URL="postgresql://johndoe:randompassword@localhost:3000/mydb?schema=public"
