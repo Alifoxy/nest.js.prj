@@ -9,18 +9,15 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-model User {
-  id    Int     @default(autoincrement()) @id
-  email String  @unique
+model Cat {
+  cat_id    Int     @default(autoincrement()) @id
   name  String?
-  posts Post[]
+  breed  String
+  owner  String
 }
 
-model Post {
+model Owner {
   id        Int      @default(autoincrement()) @id
-  title     String
-  content   String?
-  published Boolean? @default(false)
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?
+  name      String
+  cats_id    Int?     @relation(fields: [cat_id], references: [id])
 }
