@@ -28,3 +28,4 @@ export class CatService {
 }
 
 // DATABASE_URL="postgresql://johndoe:randompassword@localhost:3000/mydb?schema=public"
+// DATABASE_URL="postgresql://johndoe:randompassword@localhost:3000/mydb?schema=public"
