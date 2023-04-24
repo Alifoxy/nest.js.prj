@@ -27,16 +27,12 @@ import { User } from '@prisma/client';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { editFileName, imageFileFilter } from '../core/file-upload/file.upload';
-import { PetsService } from '../pets/pets.service';
-import { PetDto } from '../pets/dto/pet.dto';
 
 @ApiTags('Users')
 @Controller('users')
 export class UsersController {
     constructor(
         private readonly userService: UsersService,
-        @Inject(forwardRef(() => PetsService))
-        private readonly petsService: PetsService,
     ) {}
 
     @Get()
@@ -104,21 +100,4 @@ export class UsersController {
         @Param('userId') userId: string,
     ) {}
 
-    @Post('/animals/:userId')
-    async addNewPet(
-        @Req() req: any,
-        @Res() res: any,
-        @Body() body: PetDto,
-        @Param('userId') userId: string,
-    ) {
-        const user = await this.userService.getUserById(userId);
-        if (!user) {
-            return res
-                .status(HttpStatus.NOT_FOUND)
-                .json({ message: `User with id: ${userId} not fount` });
-        }
-        return res
-            .status(HttpStatus.OK)
-            .json(await this.petsService.createAnimal(body, userId));
-    }
 }
