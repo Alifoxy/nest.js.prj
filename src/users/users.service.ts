@@ -8,7 +8,7 @@ import { PrismaService } from '../core/orm/prisma.service';
 export class UsersService {
     constructor(private readonly prismaService: PrismaService) {}
 
-    async createUser(userData: CreateUserDto): Promise<User> {
+    async createUser(userData: { password: any; name: any; email: any }): Promise<> {
         return this.prismaService.user.create({
             data: {
                 name: userData.name,
@@ -39,16 +39,10 @@ export class UsersService {
                 city: true,
                 age: true,
             },
-            // include: {
-            //   pets: true,
-            // },
         });
     }
 
     async deleteUser(id: string) {
-        // const user = this.users.find((item) => item.id === id);
-        // //slice на вибір
-        // return this.users;
     }
 
     async findByUsername(userEmail: string) {

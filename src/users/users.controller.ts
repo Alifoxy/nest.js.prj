@@ -23,7 +23,6 @@ import {
     ApiResponse,
     ApiTags,
 } from '@nestjs/swagger';
-import { User } from '@prisma/client';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { editFileName, imageFileFilter } from '../core/file-upload/file.upload';
@@ -52,10 +51,6 @@ export class UsersController {
             .json(await this.userService.getUserById(userId));
     }
 
-    // @ApiOkResponse({
-    //   description: 'The record has been successfully created.',
-    //   type: User,
-    // })
     @Post()
     @UseInterceptors(
         FileInterceptor('file', {
